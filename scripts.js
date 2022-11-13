@@ -4,7 +4,7 @@
     const progress = player.querySelector(".progress");
     const progressBar = player.querySelector(".progress_filled");
     const toggle = player.querySelector(".toggle");
-    const skipButtons = player.querySelector("[data-skip]");
+    const skipButtons = player.querySelectorAll("[data-skip]");
     const ranges = player.querySelector(".player_slider");
 
 // Build our functions
@@ -19,6 +19,10 @@
         toggle.textContent = icon;
     };
 
+    function skip () {
+        video.currentTime += parseFloat(this.dataset.skip);
+    }
+
 // Hook up the event listeners
 
     video.addEventListener("click", togglePlay);
@@ -26,3 +30,4 @@
     video.addEventListener("pause", updateButton);
 
     toggle.addEventListener("click", togglePlay);
+    skipButtons.forEach(button => button.addEventListener("click", skip));
